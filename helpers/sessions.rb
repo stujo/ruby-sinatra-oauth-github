@@ -6,6 +6,20 @@ helpers do
     session[:github_user][:login]
   end
 
+  def current_github_avatar
+    session[:github_user][:avatar_url]
+  end
+
+  def current_github_url
+    session[:github_user][:html_url]
+  end
+
+  def current_github_auth_token
+    session[:github_user][:auth_token]
+  end
+
+
+
   def authenticated?
     !session[:github_user].blank?
   end
@@ -32,7 +46,7 @@ helpers do
   def handle_github_callback
     github_state_check = params[:state]
 
-    return false if github_state_check != session['github_oauth_check_state']
+    return false if github_state_check.blank? || github_state_check != session['github_oauth_check_state']
 
     github_code = params[:code]
 
@@ -44,17 +58,16 @@ helpers do
 
     if github_response.code == 200
       token_details = JSON.parse(github_response.body)
+      if token_details.key?('access_token')
+        user_lookup = HTTParty.get('https://api.github.com/user?', headers: {"Accept" => "application/json",
+                                                                             "Authorization" => "token #{token_details['access_token']}",
+                                                                             "User-Agent" => "stujo's app"
+                                                                 })
 
-      user_lookup = HTTParty.get('https://api.github.com/user?', headers: {"Accept" => "application/json",
-                                                                           "Authorization" => "token #{token_details['access_token']}",
-                                                                           "User-Agent" => "stujo's app"
-                                                               })
-
-
-      set_current_github_user JSON.parse(user_lookup.body), token_details['access_token']
-    else
-      false
+        return set_current_github_user JSON.parse(user_lookup.body), token_details['access_token']
+      end
     end
+    false
   end
 
   def set_current_github_user github_user, auth_token

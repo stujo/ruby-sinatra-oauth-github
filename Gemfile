@@ -20,8 +20,11 @@ gem 'thin'
 gem 'rake'
 gem 'httparty'
 gem 'dotenv'
+gem 'rack-flash3'
+
 
 group :development, :test do
+  gem 'rspec-html-matchers'
   gem 'webmock'
   gem 'faker'
   gem 'rspec'

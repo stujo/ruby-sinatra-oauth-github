@@ -1,4 +1,10 @@
-<h1><%= @github_username %> Notes</h1>
-<% @notes.each do |note| %>
-    <%= erb :"notes/_item", { :layout => false, :locals => { :note => note } } %>
-<% end %>
+<div class="actions">
+  <a class="note__action--edit pure-button" href="/notes/new">Add Note</a>
+</div>
+
+<div class="panel">
+  <h1><%= current_github_username %>'s notes</h1>
+  <% @notes.each do |note| %>
+      <%= erb :"notes/_item", {:layout => false, :locals => {:note => note}} %>
+  <% end %>
+</div>

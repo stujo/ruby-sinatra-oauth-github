@@ -1,22 +1,72 @@
-html {
-  background-color: #eee;
-  padding: 1em;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #59bfab;
 }
 
 .content {
   border-radius:1em;
   background-color: #fff;
-  border: .5em solid #333;
+  border: 0.1em solid #333;
   margin: 1em auto;
   max-width: 768px;
-  min-height: 32em;
+  max-width: 48em;
   color: #333;
-  padding: 1em;
 }
 
-.note {
+.note{
   margin: 1em;
   padding: 1em;
   border-radius:1em;
-  background-color: #dfd;
+  background-color: #b7f0ba;
+  border: 0.1em solid #333;
+  position:relative;
+}
+
+.note__repo {
+  position:absolute;
+  bottom:1em;
+  right:1em;
+}
+
+.panel {
+  margin: 1em;
+  padding: 1em;
+  border-radius:1em;
+  min-height: 10em;
+  background-color: #f0f0f0;
+  border: 0.1em solid #333;
+}
+
+.message {
+  margin: 1em;
+  padding: 1em;
+  border-radius:1em;
+  background-color: #a9ccf0;
+  border: 0.1em solid #3d44ac;
+  font-weight: bold;
+}
+
+
+.github-avatar--small{
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.6em;
+}
+
+.form_error_list {
+  margin: 0;
+  padding: 0;
+  color: #F66;
+  list-style: none;
+}
+
+.actions {
+  text-align: right;
+  margin: 1em;
+}
+
+.textarea--full-width{
+  width: 100%;
+  margin: auto;
 }

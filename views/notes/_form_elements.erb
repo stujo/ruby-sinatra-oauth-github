@@ -1,11 +1,23 @@
-<fieldset>
-  <input id="note_content" 
-    name="note[content]" 
-    value="<%= h @note.content %>" 
-    type="text" placeholder="Notes">
+<% if @note.errors.key?(:content) %>
+    <ul class="form_error_list">
+      <% @note.errors[:content].each do |error_message| %>
+          <li><%= error_message %></li>
+      <% end %>
+    </ul>
+<% end %>
+<textarea class="textarea--full-width" id="note_content" name="note[content]"><%= h @note.content %></textarea>
 
-  <label for="note_complete" class="pure-checkbox">
-    <input type='hidden' name='note[complete]' value='false' />
-    <input id="note_complete" name="note[complete]" value="true" <%= 'checked' if @note.complete %> type="checkbox"> Completed!
-  </label>
-</fieldset>
+<% if @note.errors.key?(:github_repo) %>
+    <ul class="form_error_list">
+      <% @note.errors[:github_repo].each do |error_message| %>
+          <li><%= error_message %></li>
+      <% end %>
+    </ul>
+<% end %>
+<select id="note__github_repo" name="note[github_repo]">
+  <option>-- select a repo --</option>
+  <% github_current_user_repos.each do |repo| %>
+      <option value="<%= h repo %>" <%= @note.github_repo == repo ? 'SELECTED' : '' %>><%= h repo %></option>
+  <% end %>
+</select>
+

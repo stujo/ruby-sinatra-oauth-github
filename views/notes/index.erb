@@ -1,6 +1,8 @@
-<h1>All Notes</h1>
+<div class="panel">
+  <h1>All Notes</h1>
 
-<% @notes.each do |note| %>
-    <%= erb :"notes/_item", { :layout => false, :locals => { :note => note } } %>
-<% end %>
+  <% @notes.each do |note| %>
+      <%= erb :"notes/_item", {:layout => false, :locals => {:note => note}} %>
+  <% end %>
 
+</div>

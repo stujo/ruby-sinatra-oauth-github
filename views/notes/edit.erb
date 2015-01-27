@@ -1,8 +1,14 @@
-<h1>Edit Note</h1>
-<form class="pure-form pure-form-stacked" method="post" action="/notes/<%= @note.id %>">
-  <%= erb :"notes/_form_elements", :layout => false %>
-  <div class="pure-controls">
-    <button type="submit" class="pure-button pure-button-primary">Submit</button>
-  </div>
-</form>
+<div class="panel" data-note-id="<%= @note.id %>">
+  <h1>Edit Note</h1>
+  <form class="pure-form pure-form-stacked" method="post" action="/notes/<%= @note.id %>">
+    <%= erb :"notes/_form_elements", :layout => false %>
+    <label for="note_complete" class="pure-checkbox">
+      <input type='hidden' name='note[complete]' value='false' />
+      <input id="note_complete" name="note[complete]" value="true" <%= 'checked' if @note.complete %> type="checkbox"> Completed!
+    </label>
 
+    <div class="pure-controls">
+      <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+  </form>
+</div>

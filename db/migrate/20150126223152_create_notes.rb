@@ -4,6 +4,7 @@ class CreateNotes < ActiveRecord::Migration
       t.boolean :complete
       t.text :content
       t.string :github_username
+      t.string :github_repo
       t.timestamps :null => true
     end  
   end

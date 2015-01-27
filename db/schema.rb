@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150126223152) do
     t.boolean  "complete"
     t.text     "content"
     t.string   "github_username"
+    t.string   "github_repo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

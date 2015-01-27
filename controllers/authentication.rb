@@ -10,7 +10,7 @@ end
 
 
 get '/auth/callback' do
-  redirect "/user/#{current_github_username}/notes" if handle_github_callback
+  redirect "/notes/mine" if handle_github_callback
   halt 401, "Unable to Authenticate Via GitHub"
 end
 

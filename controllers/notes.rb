@@ -8,6 +8,18 @@ get '/notes' do
   erb :"notes/index"
 end
 
+get '/notes/mine' do
+  @notes = Note.where(:github_username => current_github_username)
+
+  if @notes.blank?
+    flash[:info] = 'You don\'t have any notes yet, make one!'
+    redirect '/notes/new'
+  else
+    erb :"users/notes"
+  end
+
+end
+
 get '/notes/new' do
   @note = Note.new
   erb :"notes/new"
@@ -17,6 +29,7 @@ post '/notes' do
   @note = Note.new(params[:note])
   @note.github_username = current_github_username
   if @note.save
+    flash[:info] = 'New note added!'
     redirect "/notes"
   else
     erb :"notes/new"
@@ -38,7 +51,8 @@ post '/notes/:id' do
   @note = Note.find(params[:id])
   halt 401 unless @note.github_username == current_github_username
   if @note.update_attributes(params[:note])
-    redirect "/notes"
+    flash[:info] = 'Note updated!'
+    redirect '/notes/mine'
   else
     erb :"notes/edit"
   end
@@ -48,14 +62,10 @@ delete '/notes/:id' do
   @note = Note.find(params[:id])
   halt 401 unless @note.github_username == current_github_username
   @note.destroy
-  redirect "/notes"
+  flash[:info] = 'Note deleted!'
+  redirect '/notes/mine'
 end
 
 
-get '/user/:github_username/notes' do
-  @github_username = params[:github_username]
-  @notes = Note.where(:github_username => @github_username)
-  erb :"users/notes"
-end
 
 
