@@ -1,0 +1,4 @@
+<h1><%= @github_username %> Notes</h1>
+<% @notes.each do |note| %>
+    <%= erb :"notes/_item", { :layout => false, :locals => { :note => note } } %>
+<% end %>

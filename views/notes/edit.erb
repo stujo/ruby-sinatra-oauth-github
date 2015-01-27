@@ -1,0 +1,8 @@
+<h1>Edit Note</h1>
+<form class="pure-form pure-form-stacked" method="post" action="/notes/<%= @note.id %>">
+  <%= erb :"notes/_form_elements", :layout => false %>
+  <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+  </div>
+</form>
+

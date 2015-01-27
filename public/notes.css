@@ -1,0 +1,22 @@
+html {
+  background-color: #eee;
+  padding: 1em;
+}
+
+.content {
+  border-radius:1em;
+  background-color: #fff;
+  border: .5em solid #333;
+  margin: 1em auto;
+  max-width: 768px;
+  min-height: 32em;
+  color: #333;
+  padding: 1em;
+}
+
+.note {
+  margin: 1em;
+  padding: 1em;
+  border-radius:1em;
+  background-color: #dfd;
+}

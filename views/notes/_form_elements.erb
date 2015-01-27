@@ -1,0 +1,11 @@
+<fieldset>
+  <input id="note_content" 
+    name="note[content]" 
+    value="<%= h @note.content %>" 
+    type="text" placeholder="Notes">
+
+  <label for="note_complete" class="pure-checkbox">
+    <input type='hidden' name='note[complete]' value='false' />
+    <input id="note_complete" name="note[complete]" value="true" <%= 'checked' if @note.complete %> type="checkbox"> Completed!
+  </label>
+</fieldset>

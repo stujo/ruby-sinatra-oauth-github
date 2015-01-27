@@ -1,0 +1,18 @@
+<h1>Show</h1>
+
+<div class="note" data-note-id="<%= @note.id %>">
+  <div class="note__content"><%= @note.content %></div>
+</div>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+  <% if @note.github_username == current_github_username %>
+      <ul>
+        <li><a class="note__action--edit pure-button" href="/notes/<%= @note.id %>/edit">Edit</a></li>
+        <li>
+          <a class="note__action--delete pure-button hidden_form_trigger" data-hidden-form-id="delete_note_form">Delete</a>
+        </li>
+      </ul>
+      <form id="delete_note_form" class="hidden" method="post" action="/notes/<%= @note.id %>">
+        <input type="hidden" name="_method" value="delete"></form>
+  <% end %>
+</div>

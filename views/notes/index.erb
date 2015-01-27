@@ -1,0 +1,6 @@
+<h1>All Notes</h1>
+
+<% @notes.each do |note| %>
+    <%= erb :"notes/_item", { :layout => false, :locals => { :note => note } } %>
+<% end %>
+

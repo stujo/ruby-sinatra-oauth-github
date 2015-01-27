@@ -1,0 +1,1 @@
+Note.find_or_create_by(:content => 'Test Note 1', :github_username => 'stujo')
